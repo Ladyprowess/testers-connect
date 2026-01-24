@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Testers Connect",
   description:
-    "A community for software testers to learn, connect, and grow through events, chapters, resources, and webinars.",
+    "A community for software testers to learn, connect, and grow through events, blog, resources, and webinars.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

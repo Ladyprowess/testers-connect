@@ -75,7 +75,7 @@ export default function HeroRotating() {
         key: "lead",
         badge: "ORGANISE & INSPIRE",
         title: "Build community and lead with impact.",
-        desc: "Start a local chapter, speak at events, and mentor the next generation of testing professionals.",
+        desc: "Read blog, speak at events, and mentor the next generation of testing professionals.",
         ctaLabel: "Become a leader",
         href: "/community",
         Icon: Users,

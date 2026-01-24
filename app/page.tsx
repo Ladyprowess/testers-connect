@@ -57,11 +57,11 @@ export default async function HomePage() {
       bg: "bg-[#145DA0]",
     },
     {
-      title: "Chapters",
+      title: "Blog",
       desc: "Meet testers near you and build your network in a friendly way.",
-      href: "/chapters",
+      href: "/blog",
       metric: "120+ Countries",
-      Icon: MapPin,
+      Icon: Book,
       bg: "bg-[#16A34A]",
     },
     {
@@ -139,7 +139,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="What you get"
             title="Everything you need to grow in testing"
-            desc="Events, chapters, webinars, and resources built for real progress."
+            desc="Events, blog, webinars, and resources built for real progress."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
