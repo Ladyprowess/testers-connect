@@ -1,7 +1,7 @@
 export const navLinks = [
     { label: "Events", href: "/events" },
-    { label: "Chapters", href: "/chapters" },
-    { label: "Courses", href: "/courses" },
+    { label: "Blog", href: "blog.testersconnect.com" },
+    { label: "Webinars", href: "/webinars" },
     { label: "Resources", href: "/resources" },
     { label: "Engage", href: "/engage" },
     { label: "About", href: "/about" },
@@ -13,8 +13,8 @@ export const navLinks = [
       title: "Explore",
       links: [
         { label: "Events", href: "/events" },
-        { label: "Chapters", href: "/chapters" },
-        { label: "Courses", href: "/courses" },
+        { label: "Blog", href: "blog.testersconnect.com" },
+        { label: "Webinars", href: "/webinars" },
         { label: "Resources", href: "/resources" },
       ],
     },

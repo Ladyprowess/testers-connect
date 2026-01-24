@@ -20,7 +20,7 @@ const footerColumns: FooterColumn[] = [
       { label: "Home", href: "/" },
       { label: "Events Hub", href: "/events" },
       { label: "Community Portal", href: "/community" },
-      { label: "Course Catalog", href: "/courses" },
+      { label: "Webinars Catalog", href: "/webinars" },
     ],
   },
   {
@@ -192,7 +192,7 @@ export default function Footer() {
               Stay Connected
             </div>
             <p className="mt-3 max-w-xl text-[15px] leading-7 text-slate-600">
-              Get the latest updates on courses, events, and community news.
+              Get the latest updates on webinars, events, and community news.
             </p>
           </div>
 

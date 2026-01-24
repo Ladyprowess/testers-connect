@@ -17,14 +17,24 @@ export type DbEvent = {
   register_url?: string | null; // ✅ NEW
 };
 
-export type DbCourse = {
+export type DbWebinar = {
   id: string;
   title: string;
   slug: string;
-  level: "Beginner" | "Intermediate" | "Advanced";
-  duration: string;
+
+  // Keep these if you already use them / want them
+  level?: "Beginner" | "Intermediate" | "Advanced" | null;
+  duration?: string | null;
+
   description: string;
   tags: string[];
+
+  // Webinar-specific (optional, but useful)
+  webinar_date?: string | null; // YYYY-MM-DD or full datetime string
+  mode?: "Live" | "Recorded" | null;
+  join_url?: string | null;     // live link
+  replay_url?: string | null;   // recording link
+  cover_image_url?: string | null;
 };
 
 export type DbResource = {
@@ -133,7 +143,10 @@ export async function getEventsSidebarList({
   view: EventsView;
   limit?: number;
 }): Promise<
-  Pick<DbEvent, "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url">[]
+  Pick<
+    DbEvent,
+    "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url"
+  >[]
 > {
   const today = todayISODate();
 
@@ -155,13 +168,15 @@ export async function getEventsSidebarList({
 }
 
 /* =========================
-   COURSES
+   WEBINARS
 ========================= */
 
-export async function getCourses(): Promise<DbCourse[]> {
+export async function getWebinars(): Promise<DbWebinar[]> {
   const { data, error } = await supabase
-    .from("courses")
-    .select("id,title,slug,level,duration,description,tags")
+    .from("webinars")
+    .select(
+      "id,title,slug,level,duration,description,tags,webinar_date,mode,join_url,replay_url,cover_image_url"
+    )
     .eq("is_published", true)
     .order("created_at", { ascending: false });
 

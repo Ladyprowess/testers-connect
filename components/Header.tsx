@@ -15,6 +15,7 @@ import {
   GraduationCap,
   BookOpen,
   MapPin,
+  Book,
   Megaphone,
   Mail,
 } from "lucide-react";
@@ -68,28 +69,28 @@ export default function Header() {
         href: "/community",
         icon: <Users className="h-5 w-5" />,
       },
+      {
+        label: "Blog",
+        href: "https://blog.testersconnect.com",
+        icon: <Book className="h-5 w-5" />,
+      },
     ],
     []
   );
 
-  /* Courses moved into More + icons added */
+  /* Webinars moved into More + icons added */
   const moreItems: MoreItem[] = useMemo(
     () => [
       
       {
-        label: "Courses",
-        href: "/courses",
+        label: "Webinars",
+        href: "/webinars",
         icon: <GraduationCap className="h-5 w-5" />,
       },
       {
         label: "Resources",
         href: "/resources",
         icon: <BookOpen className="h-5 w-5" />,
-      },
-      {
-        label: "Chapters",
-        href: "/chapters",
-        icon: <MapPin className="h-5 w-5" />,
       },
       {
         label: "Engage",
