@@ -34,9 +34,10 @@ export default async function WebinarsPage() {
                     {w.level} • {w.duration}
                   </div>
                   <p className="mt-3 text-slate-600">{w.description}</p>
+
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {w.tags.map((t) => (
-                      <Tag key={t} label={t} />
+                    {w.tags.map((t: string) => (
+                      <Tag key={`${w.id}-${t}`} label={t} />
                     ))}
                   </div>
                 </div>
