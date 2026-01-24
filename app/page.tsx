@@ -9,11 +9,62 @@ import Button from "@/components/ui/Button";
 import Tag from "@/components/Tag";
 import { stats, events, chapters, courses, resources } from "@/content/data";
 import HeroRotating from "@/components/home/HeroRotating";
+import {
+  Users,
+  CalendarDays,
+  GraduationCap,
+  MapPin,
+  ArrowRight,
+} from "lucide-react";
+
+type OfferItem = {
+  title: string;
+  desc: string;
+  href: string;
+  metric: string;
+  Icon: any;
+  bg: string;
+};
 
 export default function HomePage() {
+  const offers: OfferItem[] = [
+    {
+      title: "Events",
+      desc: "Online and in-person sessions that help you learn and connect.",
+      href: "/events",
+      metric: "500+ Events/Year",
+      Icon: CalendarDays,
+      bg: "bg-[#145DA0]",
+    },
+    {
+      title: "Chapters",
+      desc: "Meet testers near you and build your network in a friendly way.",
+      href: "/chapters",
+      metric: "120+ Countries",
+      Icon: MapPin,
+      bg: "bg-[#16A34A]",
+    },
+    {
+      title: "Courses",
+      desc: "Simple learning paths that build skill step by step.",
+      href: "/courses",
+      metric: "200+ Courses",
+      Icon: GraduationCap,
+      bg: "bg-[#F97316]",
+    },
+    {
+      title: "Community",
+      desc: "Connect with testers worldwide and grow with support.",
+      href: "/community",
+      metric: "50K+ Members",
+      Icon: Users,
+      bg: "bg-[#7C3AED]",
+    },
+  ];
+
   return (
     <div>
-      {/* Hero (Rotating card hero like your screenshots) */}
+      {/* Hero */}
       <HeroRotating />
 
       {/* Stats */}
@@ -27,7 +78,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* What we offer */}
+      {/* What we offer - updated structure */}
       <section className="bg-white">
         <Container className="py-16">
           <SectionHeading
@@ -36,37 +87,45 @@ export default function HomePage() {
             desc="Events, chapters, courses, and resources built for real progress."
           />
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "Events",
-                desc: "Online and in-person sessions that help you learn and connect.",
-                href: "/events",
-              },
-              {
-                title: "Chapters",
-                desc: "Meet testers near you and build your network in a friendly way.",
-                href: "/chapters",
-              },
-              {
-                title: "Courses",
-                desc: "Simple learning paths that build skill step by step.",
-                href: "/courses",
-              },
-            ].map((c) => (
-              <Card key={c.title} className="p-6">
-                <div className="h-10 w-10 rounded-xl bg-brand-50">
-                  <div className="h-10 w-10 rounded-xl bg-brand-600/15" />
-                </div>
-                <div className="mt-4 text-lg font-bold">{c.title}</div>
-                <p className="mt-2 text-slate-600">{c.desc}</p>
-                <div className="mt-5">
-                  <Link href={c.href}>
-                    <Button variant="secondary">Explore</Button>
-                  </Link>
-                </div>
-              </Card>
-            ))}
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {offers.map((c) => {
+              const Icon = c.Icon;
+
+              return (
+                <Link
+                  key={c.title}
+                  href={c.href}
+                  className="group rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#145DA0]/30"
+                >
+                  <Card className="h-full rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition-all group-hover:-translate-y-0.5 group-hover:shadow-md">
+                    {/* Icon */}
+                    <div
+                      className={`grid h-16 w-16 place-items-center rounded-2xl ${c.bg} shadow-lg`}
+                    >
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+
+                    {/* Title */}
+                    <div className="mt-6 text-2xl font-extrabold tracking-tight text-slate-900">
+                      {c.title}
+                    </div>
+
+                    {/* Description */}
+                    <p className="mt-3 text-[17px] leading-7 text-slate-600">
+                      {c.desc}
+                    </p>
+
+                    {/* Bottom row */}
+                    <div className="mt-8 flex items-center justify-between">
+                      <div className="text-sm font-semibold text-slate-900">
+                        {c.metric}
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-slate-900 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -224,7 +283,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Final CTA (button text changed as requested) */}
+      {/* Final CTA */}
       <section className="bg-brand-50">
         <Container className="py-16">
           <div className="rounded-xl2 border border-brand-100 bg-white p-8 sm:p-10">
