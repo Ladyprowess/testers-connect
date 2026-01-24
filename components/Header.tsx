@@ -66,7 +66,7 @@ export default function Header() {
       },
       {
         label: "Community",
-        href: "/community",
+        href: "https://tinyurl.com/Testersconnect",
         icon: <Users className="h-5 w-5" />,
       },
       {

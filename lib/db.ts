@@ -155,7 +155,7 @@ export async function getEventsSidebarList({
 }
 
 /* =========================
-   COURSES
+  WEBINARS
 ========================= */
 
 export async function getWebinars(): Promise<DbWebinar[]> {

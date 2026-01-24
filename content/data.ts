@@ -8,14 +8,6 @@ export type EventItem = {
   tags: string[];
 };
 
-export type BlogItem = {
-  title: string;
-  slug: string;
-  excerpt: string;
-  category: string;
-  tags: string[];
-};
-
 /**
  * Webinars are fetched from Supabase.
  * This type matches the webinar data used in the UI.
@@ -41,7 +33,7 @@ export const stats = [
   { label: "Community members", value: "25,000+" },
   { label: "Countries reached", value: "30+" },
   { label: "Events hosted", value: "400+" },
-  { label: "Active chapters", value: "40+" },
+  { label: "Resources shared", value: "40+" },
 ];
 
 export const events: EventItem[] = [
@@ -76,46 +68,8 @@ export const events: EventItem[] = [
 ];
 
 /**
- * BLOG CONTENT (replaced chapters)
- */
-export const blogs: BlogItem[] = [
-  {
-    title: "How to start a career in software testing",
-    slug: "how-to-start-software-testing",
-    excerpt:
-      "A simple guide for beginners who want to understand testing, learn the basics, and avoid common mistakes.",
-    category: "Beginners",
-    tags: ["Testing", "Career", "Beginners"],
-  },
-  {
-    title: "Manual testing vs automation: what you should learn first",
-    slug: "manual-vs-automation-testing",
-    excerpt:
-      "We explain the difference between manual and automated testing, and when each one makes sense.",
-    category: "Learning",
-    tags: ["Manual Testing", "Automation", "QA"],
-  },
-  {
-    title: "Common testing terms explained in simple words",
-    slug: "testing-terms-explained",
-    excerpt:
-      "A beginner-friendly explanation of common testing words you will hear often in QA roles.",
-    category: "Education",
-    tags: ["Basics", "Learning", "QA"],
-  },
-  {
-    title: "How to prepare for your first QA interview",
-    slug: "prepare-for-qa-interview",
-    excerpt:
-      "Practical tips to help you prepare, answer questions with confidence, and show your skills.",
-    category: "Career",
-    tags: ["Interview", "Career", "QA"],
-  },
-];
-
-/**
- * ✅ No hardcoded webinars here.
- * Webinars are fetched from Supabase using getWebinars().
+ * ✅ No blog content here.
+ * Blog lives externally and is not represented in this app.
  */
 
 export const resources: ResourceItem[] = [
