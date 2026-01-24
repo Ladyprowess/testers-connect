@@ -40,7 +40,7 @@ export const stats = [
   { label: "Community members", value: "25,000+" },
   { label: "Countries reached", value: "30+" },
   { label: "Events hosted", value: "400+" },
-  { label: "Active chapters", value: "40+" },
+  { label: "Active Blogs", value: "40+" },
 ];
 
 export const events: EventItem[] = [

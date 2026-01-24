@@ -17,24 +17,14 @@ export type DbEvent = {
   register_url?: string | null; // ✅ NEW
 };
 
-export type DbWebinar = {
+export type DbCourse = {
   id: string;
   title: string;
   slug: string;
-
-  // Keep these if you already use them / want them
-  level?: "Beginner" | "Intermediate" | "Advanced" | null;
-  duration?: string | null;
-
+  level: "Beginner" | "Intermediate" | "Advanced";
+  duration: string;
   description: string;
   tags: string[];
-
-  // Webinar-specific (optional, but useful)
-  webinar_date?: string | null; // YYYY-MM-DD or full datetime string
-  mode?: "Live" | "Recorded" | null;
-  join_url?: string | null;     // live link
-  replay_url?: string | null;   // recording link
-  cover_image_url?: string | null;
 };
 
 export type DbResource = {
@@ -143,10 +133,7 @@ export async function getEventsSidebarList({
   view: EventsView;
   limit?: number;
 }): Promise<
-  Pick<
-    DbEvent,
-    "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url"
-  >[]
+  Pick<DbEvent, "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url">[]
 > {
   const today = todayISODate();
 
@@ -168,7 +155,7 @@ export async function getEventsSidebarList({
 }
 
 /* =========================
-   WEBINARS
+   COURSES
 ========================= */
 
 export async function getWebinars(): Promise<DbWebinar[]> {

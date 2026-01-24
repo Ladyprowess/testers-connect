@@ -18,6 +18,7 @@ import {
   ArrowRight,
   BookOpen,
   Wrench,
+  Book,
   MessageSquareText,
   Code,
 } from "lucide-react";
