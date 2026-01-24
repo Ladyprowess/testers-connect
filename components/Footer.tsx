@@ -55,7 +55,6 @@ const footerColumns: FooterColumn[] = [
 export default function Footer() {
   const year = new Date().getFullYear();
 
-  // ✅ state MUST be inside the component
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -93,14 +92,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="relative overflow-hidden border-t border-slate-200 bg-slate-50">
+      {/* Soft background overlay (same style as hero) */}
+      <div className="pointer-events-none absolute inset-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F9FF] via-white to-[#F5F9FF]" />
+        <div className="absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-[#145DA0]/8 blur-3xl" />
+        <div className="absolute -left-40 bottom-0 h-[520px] w-[520px] rounded-full bg-[#EAF2FB] blur-3xl" />
+      </div>
+
       {/* Top block */}
-      <Container className="py-14">
+      <Container className="relative py-14">
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Left brand + short text + icons */}
           <div className="lg:col-span-4">
             <div className="flex items-start gap-3">
-              
               <div>
                 <div className="text-xl font-extrabold tracking-tight text-slate-900">
                   Testers Connect
@@ -180,7 +185,7 @@ export default function Footer() {
       <div className="border-t border-slate-200" />
 
       {/* Stay connected */}
-      <Container className="py-12">
+      <Container className="relative py-12">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-6">
             <div className="text-3xl font-extrabold tracking-tight text-slate-900">
@@ -230,7 +235,7 @@ export default function Footer() {
       <div className="border-t border-slate-200" />
 
       {/* Bottom bar */}
-      <Container className="py-6">
+      <Container className="relative py-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-3 text-[15px] text-slate-700">
             <span>© {year} Testers Connect. All rights reserved.</span>

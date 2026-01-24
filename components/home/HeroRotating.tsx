@@ -123,31 +123,32 @@ export default function HeroRotating() {
             </p>
 
             {/* CTA ROW */}
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex flex-wrap gap-3">
-                <Link href="/community">
-                  <Button
-                    size="lg"
-                    className="bg-[#145DA0] text-white hover:bg-[#145DA0]/90"
-                  >
-                    Join our community
-                  </Button>
-                </Link>
+           {/* CTA ROW */}
+<div className="mt-7">
+  <div className="grid gap-3 sm:flex sm:items-center">
+    <Link href="/community" className="block w-full sm:w-auto">
+      <Button
+        size="lg"
+        className="w-full justify-center bg-[#145DA0] text-white hover:bg-[#145DA0]/90 sm:w-auto"
+      >
+        Join our community
+      </Button>
+    </Link>
 
-                <Link href="/donate">
-                <Button
-  size="lg"
-  variant="outline"
-  className="min-w-[220px] px-8 border-slate-300 text-slate-900 hover:bg-slate-50"
->
-  <span className="inline-flex items-center gap-2 text-base font-medium">
-    Donate <HeartHandshake className="h-5 w-5" />
-  </span>
-</Button>
+    <Link href="/donate" className="block w-full sm:w-auto">
+      <Button
+        size="lg"
+        variant="outline"
+        className="w-full justify-center border-slate-300 text-slate-900 hover:bg-slate-50 sm:w-auto"
+      >
+        <span className="inline-flex items-center gap-2 text-base font-medium">
+          Donate <HeartHandshake className="h-5 w-5" />
+        </span>
+      </Button>
+    </Link>
+  </div>
+</div>
 
-                </Link>
-              </div>
-            </div>
 
             {/* Stats row - equal layout */}
             <div className="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">

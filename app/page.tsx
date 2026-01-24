@@ -180,29 +180,34 @@ export default async function HomePage() {
       {/* Upcoming Events */}
       <section className="bg-white">
         <Container className="py-16">
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200">
-                  📅
-                </span>
-                <span className="uppercase">Upcoming Events</span>
-              </div>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+  <div className="min-w-0">
+    <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200">
+        📅
+      </span>
+      <span className="uppercase">Upcoming Events</span>
+    </div>
 
-              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">
-                Learn, Connect, Grow
-              </h2>
-              <p className="mt-3 text-lg text-slate-600">
-                Join our global community at conferences, workshops, and meetups
-              </p>
-            </div>
+    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">
+      Learn, Connect, Grow
+    </h2>
 
-            <Link href="/events" className="shrink-0">
-              <Button variant="outline" className="rounded-2xl px-5 py-6 text-base">
-                View All Events <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
+    <p className="mt-3 max-w-xl text-lg text-slate-600">
+      Join our global community at conferences, workshops, and meetups
+    </p>
+  </div>
+
+  <Link href="/events" className="w-full sm:w-auto">
+    <Button
+      variant="outline"
+      className="w-full justify-center rounded-2xl px-5 py-6 text-base sm:w-auto"
+    >
+      View All Events <ArrowRight className="ml-2 h-5 w-5" />
+    </Button>
+  </Link>
+</div>
+
 
           {/* ✅ THIS is the only thing you need here now */}
           <div className="mt-10">
