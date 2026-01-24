@@ -67,7 +67,7 @@ export default function HeroRotating() {
         title: "Grow your skills with clear learning paths.",
         desc: "Connect with industry leaders, practise advanced techniques, and build confidence in real testing work.",
         ctaLabel: "Browse advanced webinars",
-        href: "/Webinard",
+        href: "/webinars",
         Icon: Rocket,
         accent: "purple",
       },
