@@ -11,16 +11,12 @@ type EventItem = {
   id?: string;
   title: string;
   slug: string;
-  event_date: string;
+  event_date: string; // YYYY-MM-DD
   mode: "Online" | "In-person";
   city: string | null;
   description: string;
   tags?: string[];
-
-  // ✅ this is what you store in DB
   cover_image_url?: string | null;
-
-  // ✅ register/view link
   register_url?: string | null;
 };
 
@@ -35,8 +31,35 @@ type EventCardsModalProps = {
   limit?: number;
 };
 
-// ✅ Safe fallback image (won’t crash Next/Image)
-const FALLBACK_IMG = "/images/default.jpg"; // create: public/images/default.jpg
+const FALLBACK_IMG = "/images/default.jpg";
+
+// Link styled like your Button (avoid nesting <button> inside <a>)
+function LinkButton({
+  href,
+  children,
+  external,
+}: {
+  href: string;
+  children: React.ReactNode;
+  external?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+    >
+      {children}
+    </Link>
+  );
+}
+
+function isPastEvent(eventDate: string) {
+  // Compare by date only (safe for YYYY-MM-DD)
+  const today = new Date().toISOString().slice(0, 10);
+  return Boolean(eventDate) && eventDate < today;
+}
 
 export default function EventCardsModal({ events, limit }: EventCardsModalProps) {
   const [open, setOpen] = useState(false);
@@ -59,9 +82,10 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
     setActiveSlug(null);
   }
 
-  // ✅ IMPORTANT:
-  // Do NOT render empty state here. The page should handle it full-width.
   if (!events || events.length === 0) return null;
+
+  const registerUrl = active?.register_url?.trim() || "";
+  const past = active ? isPastEvent(active.event_date) : false;
 
   return (
     <>
@@ -78,7 +102,6 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
               className="text-left"
             >
               <Card className="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
-                {/* Cover */}
                 <div className="relative h-44 w-full">
                   <Image
                     src={imgSrc}
@@ -89,7 +112,6 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                   />
                 </div>
 
-                {/* Snippet */}
                 <div className="p-6">
                   <div className="text-lg font-extrabold tracking-tight text-slate-900">
                     {e.title}
@@ -127,7 +149,6 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
             className="w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top image */}
             <div className="relative h-56 w-full">
               <Image
                 src={active.cover_image_url || FALLBACK_IMG}
@@ -144,7 +165,6 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
               </button>
             </div>
 
-            {/* Content */}
             <div className="p-7">
               <div className="text-2xl font-extrabold tracking-tight text-slate-900">
                 {active.title}
@@ -183,18 +203,16 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                   Close
                 </Button>
 
-                {active.register_url ? (
-                  <Link href={active.register_url} target="_blank" rel="noreferrer">
-                    <Button className="rounded-2xl py-6">
-                      Register <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                {registerUrl ? (
+                  <LinkButton href={registerUrl} external>
+                    {past ? "View" : "Register"}{" "}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </LinkButton>
                 ) : (
-                  <Link href={`/events/${active.slug}`}>
-                    <Button className="rounded-2xl py-6">
-                      View & Register <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <LinkButton href={`/events/${active.slug}`}>
+                    {past ? "View" : "View & Register"}{" "}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </LinkButton>
                 )}
               </div>
             </div>

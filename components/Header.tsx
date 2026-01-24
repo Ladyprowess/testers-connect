@@ -173,7 +173,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/about"
-            className="hidden rounded-2xl bg-blue-700 px-6 py-3 text-[15px] font-semibold text-white hover:bg-blue-800 md:inline-flex"
+            className="hidden rounded-2xl bg-[#145da0] px-6 py-3 text-[15px] font-semibold text-white hover:bg-[#0f4f8a] md:inline-flex"
           >
             Get Started
           </Link>
@@ -207,7 +207,7 @@ export default function Header() {
               <Link
                 href="/about"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 inline-flex justify-center rounded-2xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-800"
+                className="mt-2 inline-flex justify-center rounded-2xl bg-[#145da0] px-4 py-3 text-sm font-semibold text-white hover:bg-[#0f4f8a]"
               >
                 Get Started
               </Link>

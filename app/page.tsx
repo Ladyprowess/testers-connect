@@ -42,10 +42,10 @@ type ResourceTile = {
 
 export default async function HomePage() {
   const { items: events } = await getEventsPaged({
-  view: "upcoming",
-  page: 1,
-  pageSize: 6,
-}); // ✅ latest first (DESC in db)
+    view: "upcoming",
+    page: 1,
+    pageSize: 6,
+  }); // ✅ latest first (DESC in db)
 
   const offers: OfferItem[] = [
     {
@@ -125,7 +125,7 @@ export default async function HomePage() {
       {/* Stats */}
       <section className="bg-slate-50">
         <Container className="py-12">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 place-items-center">
+          <div className="grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
               <StatCard key={s.label} label={s.label} value={s.value} />
             ))}
@@ -184,38 +184,48 @@ export default async function HomePage() {
       {/* Upcoming Events */}
       <section className="bg-white">
         <Container className="py-16">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-  <div className="min-w-0">
-    <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700">
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200">
-        📅
-      </span>
-      <span className="uppercase">Upcoming Events</span>
-    </div>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200">
+                  📅
+                </span>
+                <span className="uppercase">Upcoming Events</span>
+              </div>
 
-    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">
-      Learn, Connect, Grow
-    </h2>
+              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">
+                Learn, Connect, Grow
+              </h2>
 
-    <p className="mt-3 max-w-xl text-lg text-slate-600">
-      Join our global community at conferences, workshops, and meetups
-    </p>
-  </div>
+              <p className="mt-3 max-w-xl text-lg text-slate-600">
+                Join our global community at conferences, workshops, and meetups
+              </p>
+            </div>
 
-  <Link href="/events" className="w-full sm:w-auto">
-    <Button
-      variant="outline"
-      className="w-full justify-center rounded-2xl px-5 py-6 text-base sm:w-auto"
-    >
-      View All Events <ArrowRight className="ml-2 h-5 w-5" />
-    </Button>
-  </Link>
-</div>
+            <Link href="/events" className="w-full sm:w-auto">
+              <Button
+                variant="outline"
+                className="w-full justify-center rounded-2xl px-5 py-6 text-base sm:w-auto"
+              >
+                View All Events <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
 
-
-          {/* ✅ THIS is the only thing you need here now */}
+          {/* ✅ Upcoming Events cards (with empty state) */}
           <div className="mt-10">
-            <EventCardsModal events={events} limit={4} />
+            {events?.length ? (
+              <EventCardsModal events={events} limit={4} />
+            ) : (
+              <div className="rounded-[36px] border border-slate-200 bg-slate-50 px-6 py-14 text-center">
+                <div className="text-3xl font-extrabold tracking-tight text-slate-900">
+                  No events yet.
+                </div>
+                <p className="mt-3 text-lg text-slate-600">
+                  Please check back soon for new events.
+                </p>
+              </div>
+            )}
           </div>
         </Container>
       </section>
@@ -231,7 +241,8 @@ export default async function HomePage() {
               Download our most popular resources
             </h2>
             <p className="mt-3 text-slate-600">
-              Download our most popular resources and start your testing journey today.
+              Download our most popular resources and start your testing journey
+              today.
             </p>
           </div>
 
@@ -255,9 +266,13 @@ export default async function HomePage() {
                     {r.title}
                   </div>
 
-                  <p className="mt-4 text-sm leading-6 text-slate-600">{r.desc}</p>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    {r.desc}
+                  </p>
 
-                  <div className="mt-6 text-sm text-slate-500">{r.downloads}</div>
+                  <div className="mt-6 text-sm text-slate-500">
+                    {r.downloads}
+                  </div>
 
                   <div className="mt-7">
                     <Link href={r.href}>
@@ -285,19 +300,19 @@ export default async function HomePage() {
                 Ready to grow in testing?
               </h3>
               <p className="mt-2 max-w-2xl text-white/90">
-                Join Testers Connect and start learning with people who want to build real skill.
+                Join Testers Connect and start learning with people who want to
+                build real skill.
               </p>
             </div>
 
             <Link href="/community">
-  <Button
-    size="lg"
-    className="rounded-2xl !bg-white px-7 py-6 text-base font-semibold !text-slate-900 hover:!bg-white/90"
-  >
-    Join our community
-  </Button>
-</Link>
-
+              <Button
+                size="lg"
+                className="rounded-2xl !bg-white px-7 py-6 text-base font-semibold !text-slate-900 hover:!bg-white/90"
+              >
+                Join our community
+              </Button>
+            </Link>
           </div>
         </Container>
       </section>
