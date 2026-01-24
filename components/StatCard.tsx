@@ -61,18 +61,18 @@ export default function StatCard({ label, value }: Props) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full max-w-xs mx-auto flex flex-col items-center gap-2 text-center">
       {/* Number */}
       <div className="text-3xl font-extrabold tracking-tight text-slate-900">
         {count.toLocaleString()}
         <span className="text-slate-400">+</span>
       </div>
-
+  
       {/* Label */}
       <div className="text-sm font-medium text-slate-600">{label}</div>
-
-      {/* subtle divider */}
-      <div className="mt-3 h-px w-full bg-gradient-to-r from-[#145DA0]/40 via-slate-200 to-transparent" />
+  
+      {/* subtle divider (centered, not full width) */}
+      <div className="mt-3 h-px w-2/3 bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
     </div>
   );
-}
+}  

@@ -121,7 +121,7 @@ export default async function HomePage() {
       {/* Stats */}
       <section className="bg-slate-50">
         <Container className="py-12">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 place-items-center">
             {stats.map((s) => (
               <StatCard key={s.label} label={s.label} value={s.value} />
             ))}
