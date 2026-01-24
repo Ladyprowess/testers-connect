@@ -8,10 +8,11 @@ export type EventItem = {
   tags: string[];
 };
 
-export type ChapterItem = {
-  name: string;
-  country: string;
-  frequency: string;
+export type BlogItem = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
   tags: string[];
 };
 
@@ -40,7 +41,7 @@ export const stats = [
   { label: "Community members", value: "25,000+" },
   { label: "Countries reached", value: "30+" },
   { label: "Events hosted", value: "400+" },
-  { label: "Active Blogs", value: "40+" },
+  { label: "Active chapters", value: "40+" },
 ];
 
 export const events: EventItem[] = [
@@ -74,30 +75,41 @@ export const events: EventItem[] = [
   },
 ];
 
-export const chapters: ChapterItem[] = [
+/**
+ * BLOG CONTENT (replaced chapters)
+ */
+export const blogs: BlogItem[] = [
   {
-    name: "Lagos",
-    country: "Nigeria",
-    frequency: "Monthly",
-    tags: ["In-person", "Networking"],
+    title: "How to start a career in software testing",
+    slug: "how-to-start-software-testing",
+    excerpt:
+      "A simple guide for beginners who want to understand testing, learn the basics, and avoid common mistakes.",
+    category: "Beginners",
+    tags: ["Testing", "Career", "Beginners"],
   },
   {
-    name: "London",
-    country: "United Kingdom",
-    frequency: "Monthly",
-    tags: ["In-person", "Talks"],
+    title: "Manual testing vs automation: what you should learn first",
+    slug: "manual-vs-automation-testing",
+    excerpt:
+      "We explain the difference between manual and automated testing, and when each one makes sense.",
+    category: "Learning",
+    tags: ["Manual Testing", "Automation", "QA"],
   },
   {
-    name: "Remote (Global)",
-    country: "Online",
-    frequency: "Weekly",
-    tags: ["Online", "Beginners"],
+    title: "Common testing terms explained in simple words",
+    slug: "testing-terms-explained",
+    excerpt:
+      "A beginner-friendly explanation of common testing words you will hear often in QA roles.",
+    category: "Education",
+    tags: ["Basics", "Learning", "QA"],
   },
   {
-    name: "Nairobi",
-    country: "Kenya",
-    frequency: "Monthly",
-    tags: ["In-person", "Community"],
+    title: "How to prepare for your first QA interview",
+    slug: "prepare-for-qa-interview",
+    excerpt:
+      "Practical tips to help you prepare, answer questions with confidence, and show your skills.",
+    category: "Career",
+    tags: ["Interview", "Career", "QA"],
   },
 ];
 

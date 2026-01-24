@@ -51,7 +51,7 @@ export default async function HomePage() {
   const offers: OfferItem[] = [
     {
       title: "Events",
-      desc: "Online and in-person sessions that help you grow.",
+      desc: "Online and in-person sessions helping you grow.",
       href: "/events",
       metric: "500+ Events/Year",
       Icon: CalendarDays,
