@@ -37,6 +37,22 @@ export type DbResource = {
   url: string | null;
 };
 
+/** ✅ ADD THIS TYPE */
+export type DbWebinar = {
+  id: string;
+  title: string;
+  slug: string;
+  level: "Beginner" | "Intermediate" | "Advanced";
+  duration: string;
+  description: string;
+  tags: string[];
+  webinar_date: string | null; // keep as string|null unless you enforce it
+  mode: "Online" | "In-person" | null; // allow null if DB can be empty
+  join_url: string | null;
+  replay_url: string | null;
+  cover_image_url: string | null;
+};
+
 type EventsView = "upcoming" | "past";
 
 /* =========================
@@ -133,7 +149,10 @@ export async function getEventsSidebarList({
   view: EventsView;
   limit?: number;
 }): Promise<
-  Pick<DbEvent, "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url">[]
+  Pick<
+    DbEvent,
+    "id" | "title" | "slug" | "event_date" | "cover_image_url" | "register_url"
+  >[]
 > {
   const today = todayISODate();
 
