@@ -36,11 +36,12 @@ export async function getEvents(): Promise<DbEvent[]> {
     .from("events")
     .select("id,title,slug,event_date,mode,city,description,tags")
     .eq("is_published", true)
-    .order("event_date", { ascending: true });
+    .order("event_date", { ascending: false }); // ✅ latest first
 
-  if (error) throw new Error(error.message);
+  if (error) throw error;
   return data ?? [];
 }
+
 
 export async function getEventBySlug(slug: string): Promise<DbEvent | null> {
   const { data, error } = await supabase

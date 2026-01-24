@@ -6,8 +6,10 @@ import SectionHeading from "@/components/SectionHeading";
 import StatCard from "@/components/StatCard";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
-import HeroRotating from "@/components/home/HeroRotating";
 import { stats } from "@/content/data";
+import HeroRotating from "@/components/home/HeroRotating";
+import { getEvents } from "@/lib/db";
+import EventCardsModal from "@/components/events/EventCardsModal";
 import {
   Users,
   CalendarDays,
@@ -38,7 +40,9 @@ type ResourceTile = {
   iconBg: string;
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const events = await getEvents(); // ✅ latest first (DESC in db)
+
   const offers: OfferItem[] = [
     {
       title: "Events",
@@ -74,11 +78,10 @@ export default function HomePage() {
     },
   ];
 
-  // NEW: Resources section (like your screenshot)
   const resourceTiles: ResourceTile[] = [
     {
       title: "PDF Guide",
-      desc: "Complete guide from beginner to expert with skill requirements and salary expectations.",
+      desc: "Complete guide from beginner to expert with skill requirements and salary.",
       downloads: "15,420 downloads",
       href: "/resources",
       Icon: BookOpen,
@@ -86,7 +89,7 @@ export default function HomePage() {
     },
     {
       title: "Resource Pack",
-      desc: "Essential tools, frameworks, and best practices for modern test automation.",
+      desc: "Essential tools, and best practices for modern test automation.",
       downloads: "12,350 downloads",
       href: "/resources",
       Icon: Wrench,
@@ -126,7 +129,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* What you get */}
+      {/* What we offer */}
       <section className="bg-white">
         <Container className="py-16">
           <SectionHeading
@@ -174,7 +177,41 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* REPLACEMENT SECTION (from your screenshot) */}
+      {/* Upcoming Events */}
+      <section className="bg-white">
+        <Container className="py-16">
+          <div className="flex items-start justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-slate-700">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200">
+                  📅
+                </span>
+                <span className="uppercase">Upcoming Events</span>
+              </div>
+
+              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">
+                Learn, Connect, Grow
+              </h2>
+              <p className="mt-3 text-lg text-slate-600">
+                Join our global community at conferences, workshops, and meetups
+              </p>
+            </div>
+
+            <Link href="/events" className="shrink-0">
+              <Button variant="outline" className="rounded-2xl px-5 py-6 text-base">
+                View All Events <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+
+          {/* ✅ THIS is the only thing you need here now */}
+          <div className="mt-10">
+            <EventCardsModal events={events} limit={4} />
+          </div>
+        </Container>
+      </section>
+
+      {/* Resources */}
       <section className="bg-white">
         <Container className="py-16">
           <div className="mx-auto max-w-3xl text-center">
@@ -198,7 +235,9 @@ export default function HomePage() {
                   className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm"
                 >
                   <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl shadow-lg">
-                    <div className={`grid h-16 w-16 place-items-center rounded-2xl ${r.iconBg}`}>
+                    <div
+                      className={`grid h-16 w-16 place-items-center rounded-2xl ${r.iconBg}`}
+                    >
                       <Icon className="h-8 w-8 text-white" />
                     </div>
                   </div>
@@ -207,13 +246,9 @@ export default function HomePage() {
                     {r.title}
                   </div>
 
-                  <p className="mt-4 text-sm leading-6 text-slate-600">
-                    {r.desc}
-                  </p>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">{r.desc}</p>
 
-                  <div className="mt-6 text-sm text-slate-500">
-                    {r.downloads}
-                  </div>
+                  <div className="mt-6 text-sm text-slate-500">{r.downloads}</div>
 
                   <div className="mt-7">
                     <Link href={r.href}>
@@ -232,7 +267,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* FINAL CTA — full width blue background */}
+      {/* Final CTA */}
       <section className="bg-[#145DA0]">
         <Container className="py-16">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -246,13 +281,14 @@ export default function HomePage() {
             </div>
 
             <Link href="/community">
-              <Button
-                size="lg"
-                className="rounded-2xl bg-white px-7 py-6 text-base font-semibold text-[#145DA0] hover:bg-white/90"
-              >
-                Join our community
-              </Button>
-            </Link>
+  <Button
+    size="lg"
+    className="rounded-2xl !bg-white px-7 py-6 text-base font-semibold !text-slate-900 hover:!bg-white/90"
+  >
+    Join our community
+  </Button>
+</Link>
+
           </div>
         </Container>
       </section>

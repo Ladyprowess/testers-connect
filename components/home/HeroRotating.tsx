@@ -135,26 +135,18 @@ export default function HeroRotating() {
                 </Link>
 
                 <Link href="/donate">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-slate-300 text-slate-900 hover:bg-slate-50"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      Donate <HeartHandshake className="h-4 w-4" />
-                    </span>
-                  </Button>
+                <Button
+  size="lg"
+  variant="outline"
+  className="min-w-[220px] px-8 border-slate-300 text-slate-900 hover:bg-slate-50"
+>
+  <span className="inline-flex items-center gap-2 text-base font-medium">
+    Donate <HeartHandshake className="h-5 w-5" />
+  </span>
+</Button>
+
                 </Link>
               </div>
-
-              {/* helper link on edge */}
-              <Link
-                href={s.href}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 hover:text-[#145DA0]"
-              >
-                Browse {s.ctaLabel.toLowerCase()}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
 
             {/* Stats row - equal layout */}

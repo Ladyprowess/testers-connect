@@ -100,17 +100,7 @@ export default function Footer() {
           {/* Left brand + short text + icons */}
           <div className="lg:col-span-4">
             <div className="flex items-start gap-3">
-              {/* Optional logo (remove if you don’t want it in footer) */}
-              <Link href="/" className="shrink-0">
-                <Image
-                  src="/assets/logo.png"
-                  alt="Testers Connect"
-                  width={44}
-                  height={44}
-                  priority
-                />
-              </Link>
-
+              
               <div>
                 <div className="text-xl font-extrabold tracking-tight text-slate-900">
                   Testers Connect
