@@ -68,7 +68,7 @@ export default async function HomePage() {
     {
       title: "Webinars",
       desc: "Simple learning paths that build skill step by step.",
-      href: "/Webinars",
+      href: "/webinars",
       metric: "20+ Webinars",
       Icon: GraduationCap,
       bg: "bg-[#F97316]",
