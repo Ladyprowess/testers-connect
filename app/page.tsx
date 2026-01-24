@@ -6,15 +6,18 @@ import SectionHeading from "@/components/SectionHeading";
 import StatCard from "@/components/StatCard";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
-import Tag from "@/components/Tag";
-import { stats, events, chapters, courses, resources } from "@/content/data";
 import HeroRotating from "@/components/home/HeroRotating";
+import { stats } from "@/content/data";
 import {
   Users,
   CalendarDays,
   GraduationCap,
   MapPin,
   ArrowRight,
+  BookOpen,
+  Wrench,
+  MessageSquareText,
+  Code,
 } from "lucide-react";
 
 type OfferItem = {
@@ -24,6 +27,15 @@ type OfferItem = {
   metric: string;
   Icon: any;
   bg: string;
+};
+
+type ResourceTile = {
+  title: string;
+  desc: string;
+  downloads: string;
+  href: string;
+  Icon: any;
+  iconBg: string;
 };
 
 export default function HomePage() {
@@ -62,6 +74,42 @@ export default function HomePage() {
     },
   ];
 
+  // NEW: Resources section (like your screenshot)
+  const resourceTiles: ResourceTile[] = [
+    {
+      title: "PDF Guide",
+      desc: "Complete guide from beginner to expert with skill requirements and salary expectations.",
+      downloads: "15,420 downloads",
+      href: "/resources",
+      Icon: BookOpen,
+      iconBg: "bg-[#2563EB]",
+    },
+    {
+      title: "Resource Pack",
+      desc: "Essential tools, frameworks, and best practices for modern test automation.",
+      downloads: "12,350 downloads",
+      href: "/resources",
+      Icon: Wrench,
+      iconBg: "bg-[#7C3AED]",
+    },
+    {
+      title: "Ebook",
+      desc: "100+ common testing interview questions with detailed answers and tips.",
+      downloads: "18,920 downloads",
+      href: "/resources",
+      Icon: MessageSquareText,
+      iconBg: "bg-[#C2410C]",
+    },
+    {
+      title: "Cheat Sheet",
+      desc: "Quick reference for REST API testing with examples and common patterns.",
+      downloads: "9,840 downloads",
+      href: "/resources",
+      Icon: Code,
+      iconBg: "bg-[#16A34A]",
+    },
+  ];
+
   return (
     <div>
       {/* Hero */}
@@ -78,7 +126,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* What we offer - updated structure */}
+      {/* What you get */}
       <section className="bg-white">
         <Container className="py-16">
           <SectionHeading
@@ -98,24 +146,20 @@ export default function HomePage() {
                   className="group rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#145DA0]/30"
                 >
                   <Card className="h-full rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition-all group-hover:-translate-y-0.5 group-hover:shadow-md">
-                    {/* Icon */}
                     <div
                       className={`grid h-16 w-16 place-items-center rounded-2xl ${c.bg} shadow-lg`}
                     >
                       <Icon className="h-8 w-8 text-white" />
                     </div>
 
-                    {/* Title */}
                     <div className="mt-6 text-2xl font-extrabold tracking-tight text-slate-900">
                       {c.title}
                     </div>
 
-                    {/* Description */}
                     <p className="mt-3 text-[17px] leading-7 text-slate-600">
                       {c.desc}
                     </p>
 
-                    {/* Bottom row */}
                     <div className="mt-8 flex items-center justify-between">
                       <div className="text-sm font-semibold text-slate-900">
                         {c.metric}
@@ -130,175 +174,85 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Featured content */}
-      <section className="bg-slate-50">
-        <Container className="py-16">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <SectionHeading
-                eyebrow="Events"
-                title="Upcoming events"
-                desc="Pick one and join. We keep things clear and practical."
-              />
-              <div className="mt-8 space-y-4">
-                {events.map((e) => (
-                  <Card key={e.slug} className="p-5">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="font-semibold">{e.title}</div>
-                        <div className="mt-1 text-sm text-slate-600">
-                          {e.date} • {e.mode}
-                          {e.city ? ` • ${e.city}` : ""}
-                        </div>
-                        <p className="mt-3 text-sm text-slate-600">
-                          {e.description}
-                        </p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {e.tags.map((t) => (
-                            <Tag key={t} label={t} />
-                          ))}
-                        </div>
-                      </div>
-                      <Link href={`/events/${e.slug}`}>
-                        <Button variant="outline" size="sm">
-                          View
-                        </Button>
-                      </Link>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <SectionHeading
-                eyebrow="Resources"
-                title="Learn with simple guides"
-                desc="Templates and guides that help you move faster."
-              />
-              <div className="mt-8 grid gap-4">
-                {resources.map((r) => (
-                  <Card key={r.title} className="p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <div className="font-semibold">{r.title}</div>
-                        <div className="mt-1 text-sm text-slate-600">
-                          {r.type} • {r.desc}
-                        </div>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {r.tags.map((t) => (
-                            <Tag key={t} label={t} />
-                          ))}
-                        </div>
-                      </div>
-                      <Button variant="secondary" size="sm" type="button">
-                        Open
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/resources">
-                  <Button variant="outline">See all resources</Button>
-                </Link>
-                <Link href="/courses">
-                  <Button>View courses</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Chapters + Courses preview */}
+      {/* REPLACEMENT SECTION (from your screenshot) */}
       <section className="bg-white">
         <Container className="py-16">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <SectionHeading
-                eyebrow="Chapters"
-                title="Find your people"
-                desc="Join a local chapter or a global online chapter."
-              />
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {chapters.slice(0, 4).map((ch) => (
-                  <Card key={ch.name} className="p-5">
-                    <div className="font-semibold">{ch.name}</div>
-                    <div className="mt-1 text-sm text-slate-600">
-                      {ch.country} • {ch.frequency}
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {ch.tags.map((t) => (
-                        <Tag key={t} label={t} />
-                      ))}
-                    </div>
-                  </Card>
-                ))}
-              </div>
-              <div className="mt-6">
-                <Link href="/chapters">
-                  <Button variant="outline">See all chapters</Button>
-                </Link>
-              </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+              Resources
             </div>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+              Download our most popular resources
+            </h2>
+            <p className="mt-3 text-slate-600">
+              Download our most popular resources and start your testing journey today.
+            </p>
+          </div>
 
-            <div className="lg:col-span-6">
-              <SectionHeading
-                eyebrow="Courses"
-                title="Learn with clear steps"
-                desc="Short courses built to help you practise and improve."
-              />
-              <div className="mt-8 grid gap-4">
-                {courses.map((c) => (
-                  <Card key={c.title} className="p-5">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="font-semibold">{c.title}</div>
-                        <div className="mt-1 text-sm text-slate-600">
-                          {c.level} • {c.duration}
-                        </div>
-                        <p className="mt-3 text-sm text-slate-600">{c.desc}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {c.tags.map((t) => (
-                            <Tag key={t} label={t} />
-                          ))}
-                        </div>
-                      </div>
-                      <Button variant="secondary" size="sm" type="button">
-                        View
-                      </Button>
+          <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            {resourceTiles.map((r) => {
+              const Icon = r.Icon;
+              return (
+                <Card
+                  key={r.title}
+                  className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm"
+                >
+                  <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl shadow-lg">
+                    <div className={`grid h-16 w-16 place-items-center rounded-2xl ${r.iconBg}`}>
+                      <Icon className="h-8 w-8 text-white" />
                     </div>
-                  </Card>
-                ))}
-              </div>
-              <div className="mt-6">
-                <Link href="/courses">
-                  <Button>Go to courses</Button>
-                </Link>
-              </div>
-            </div>
+                  </div>
+
+                  <div className="mt-6 text-sm font-extrabold uppercase tracking-wide text-slate-900">
+                    {r.title}
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    {r.desc}
+                  </p>
+
+                  <div className="mt-6 text-sm text-slate-500">
+                    {r.downloads}
+                  </div>
+
+                  <div className="mt-7">
+                    <Link href={r.href}>
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-2xl py-6 text-base font-semibold"
+                      >
+                        Download Free <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </Link>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-brand-50">
+      {/* FINAL CTA — full width blue background */}
+      <section className="bg-[#145DA0]">
         <Container className="py-16">
-          <div className="rounded-xl2 border border-brand-100 bg-white p-8 sm:p-10">
-            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Ready to grow in testing?
-            </h3>
-            <p className="mt-3 max-w-2xl text-slate-600">
-              Join Testers Connect and start learning with people who want to
-              build real skill.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/community">
-                <Button size="lg">Join our community</Button>
-              </Link>
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+                Ready to grow in testing?
+              </h3>
+              <p className="mt-2 max-w-2xl text-white/90">
+                Join Testers Connect and start learning with people who want to build real skill.
+              </p>
             </div>
+
+            <Link href="/community">
+              <Button
+                size="lg"
+                className="rounded-2xl bg-white px-7 py-6 text-base font-semibold text-[#145DA0] hover:bg-white/90"
+              >
+                Join our community
+              </Button>
+            </Link>
           </div>
         </Container>
       </section>
