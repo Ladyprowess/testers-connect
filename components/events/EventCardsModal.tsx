@@ -26,9 +26,16 @@ function snippet(text: string, max = 120) {
   return t.slice(0, max).trimEnd() + "…";
 }
 
-export default function EventCardsModal({ events }: { events: EventItem[] }) {
+type EventCardsModalProps = {
+  events: EventItem[];
+  limit?: number;
+};
+
+export default function EventCardsModal({ events, limit }: EventCardsModalProps) {
   const [open, setOpen] = useState(false);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
+
+  const items = typeof limit === "number" ? events.slice(0, limit) : events;
 
   const active = useMemo(
     () => events.find((e) => e.slug === activeSlug) || null,
@@ -48,9 +55,7 @@ export default function EventCardsModal({ events }: { events: EventItem[] }) {
   if (!events || events.length === 0) {
     return (
       <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
-        <div className="text-xl font-extrabold text-slate-900">
-          No event to show
-        </div>
+        <div className="text-xl font-extrabold text-slate-900">No event to show</div>
         <p className="mt-2 text-slate-600">Please check back soon for new events.</p>
       </div>
     );
@@ -60,7 +65,7 @@ export default function EventCardsModal({ events }: { events: EventItem[] }) {
     <>
       {/* Cards */}
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {events.slice(0, 4).map((e) => (
+        {items.map((e) => (
           <button
             key={e.slug}
             type="button"
@@ -164,7 +169,11 @@ export default function EventCardsModal({ events }: { events: EventItem[] }) {
               </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
-                <Button variant="outline" className="rounded-2xl py-6" onClick={closeModal}>
+                <Button
+                  variant="outline"
+                  className="rounded-2xl py-6"
+                  onClick={closeModal}
+                >
                   Close
                 </Button>
 
