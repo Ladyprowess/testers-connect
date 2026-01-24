@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===============================
+   BRAND THEME — TESTERS CONNECT
+   =============================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  /* Base */
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  /* Brand (Blue) */
+  --brand: #2563eb;        /* primary blue */
+  --brand-light: #60a5fa;  /* hover / accents */
+  --brand-soft: #eff6ff;   /* section backgrounds */
+  --brand-dark: #1e40af;   /* strong CTA / focus */
+
+  /* Borders & muted */
+  --border: #e5e7eb;
+  --muted: #64748b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617;
+    --foreground: #e5e7eb;
+
+    --brand: #60a5fa;
+    --brand-light: #93c5fd;
+    --brand-soft: #020617;
+    --brand-dark: #2563eb;
+
+    --border: #1e293b;
+    --muted: #94a3b8;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, system-ui, sans-serif);
 }
