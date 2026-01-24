@@ -8,7 +8,7 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { stats } from "@/content/data";
 import HeroRotating from "@/components/home/HeroRotating";
-import { getEvents } from "@/lib/db";
+import { getEventsPaged } from "@/lib/db";
 import EventCardsModal from "@/components/events/EventCardsModal";
 import {
   Users,
@@ -41,7 +41,11 @@ type ResourceTile = {
 };
 
 export default async function HomePage() {
-  const events = await getEvents(); // ✅ latest first (DESC in db)
+  const { items: events } = await getEventsPaged({
+  view: "upcoming",
+  page: 1,
+  pageSize: 6,
+}); // ✅ latest first (DESC in db)
 
   const offers: OfferItem[] = [
     {

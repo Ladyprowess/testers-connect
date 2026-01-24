@@ -16,7 +16,11 @@ type EventItem = {
   city: string | null;
   description: string;
   tags?: string[];
-  image?: string | null;
+
+  // ✅ this is what you store in DB
+  cover_image_url?: string | null;
+
+  // ✅ register/view link
   register_url?: string | null;
 };
 
@@ -30,6 +34,9 @@ type EventCardsModalProps = {
   events: EventItem[];
   limit?: number;
 };
+
+// ✅ Safe fallback image (won’t crash Next/Image)
+const FALLBACK_IMG = "/images/default.jpg"; // create: public/images/default.jpg
 
 export default function EventCardsModal({ events, limit }: EventCardsModalProps) {
   const [open, setOpen] = useState(false);
@@ -52,60 +59,59 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
     setActiveSlug(null);
   }
 
-  if (!events || events.length === 0) {
-    return (
-      <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
-        <div className="text-xl font-extrabold text-slate-900">No event to show</div>
-        <p className="mt-2 text-slate-600">Please check back soon for new events.</p>
-      </div>
-    );
-  }
+  // ✅ IMPORTANT:
+  // Do NOT render empty state here. The page should handle it full-width.
+  if (!events || events.length === 0) return null;
 
   return (
     <>
       {/* Cards */}
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((e) => (
-          <button
-            key={e.slug}
-            type="button"
-            onClick={() => openModal(e.slug)}
-            className="text-left"
-          >
-            <Card className="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
-              {/* Cover */}
-              <div className="relative h-44 w-full">
-                <Image
-                  src={e.image || "/images/events/default.jpg"}
-                  alt={e.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-              </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((e) => {
+          const imgSrc = e.cover_image_url || FALLBACK_IMG;
 
-              {/* Snippet */}
-              <div className="p-6">
-                <div className="text-lg font-extrabold tracking-tight text-slate-900">
-                  {e.title}
+          return (
+            <button
+              key={e.slug}
+              type="button"
+              onClick={() => openModal(e.slug)}
+              className="text-left"
+            >
+              <Card className="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+                {/* Cover */}
+                <div className="relative h-44 w-full">
+                  <Image
+                    src={imgSrc}
+                    alt={e.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
 
-                <div className="mt-3 space-y-1 text-sm text-slate-700">
-                  <div>📅 {e.event_date}</div>
-                  <div>📍 {e.city || e.mode}</div>
-                </div>
+                {/* Snippet */}
+                <div className="p-6">
+                  <div className="text-lg font-extrabold tracking-tight text-slate-900">
+                    {e.title}
+                  </div>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {snippet(e.description, 110)}
-                </p>
+                  <div className="mt-3 space-y-1 text-sm text-slate-700">
+                    <div>📅 {e.event_date}</div>
+                    <div>📍 {e.city || e.mode}</div>
+                  </div>
 
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
-                  View details <ArrowRight className="h-4 w-4" />
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {snippet(e.description, 110)}
+                  </p>
+
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
+                    View details <ArrowRight className="h-4 w-4" />
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </button>
-        ))}
+              </Card>
+            </button>
+          );
+        })}
       </div>
 
       {/* Modal */}
@@ -124,7 +130,7 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
             {/* Top image */}
             <div className="relative h-56 w-full">
               <Image
-                src={active.image || "/images/events/default.jpg"}
+                src={active.cover_image_url || FALLBACK_IMG}
                 alt={active.title}
                 fill
                 className="object-cover"
