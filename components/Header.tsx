@@ -87,11 +87,7 @@ export default function Header() {
         href: "/resources",
         icon: <BookOpen className="h-5 w-5" />,
       },
-      {
-        label: "Engage",
-        href: "/engage",
-        icon: <Megaphone className="h-5 w-5" />,
-      },
+
       {
         label: "Contact",
         href: "/contact",
