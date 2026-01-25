@@ -17,7 +17,8 @@ export async function GET() {
       tags,
       is_published,
       cover_image_url,
-      register_url
+      register_url,
+      event_type
     `
     )
     .order("event_date", { ascending: false });

@@ -83,11 +83,6 @@ export default function Header() {
     () => [
       
       {
-        label: "Webinars",
-        href: "/webinars",
-        icon: <GraduationCap className="h-5 w-5" />,
-      },
-      {
         label: "Resources",
         href: "/resources",
         icon: <BookOpen className="h-5 w-5" />,

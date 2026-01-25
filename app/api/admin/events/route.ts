@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 const SELECT_FIELDS =
-  "title,slug,event_date,mode,city,description,tags,is_published,cover_image_url,register_url";
+  "title,slug,event_date,mode,city,description,tags,is_published,cover_image_url,register_url,event_type";
 
 function pickCreateFields(body: any) {
   return {
@@ -13,9 +13,13 @@ function pickCreateFields(body: any) {
     city: body.city ?? null,
     description: body.description ?? "",
     tags: Array.isArray(body.tags) ? body.tags : [],
-    is_published: typeof body.is_published === "boolean" ? body.is_published : true,
+    is_published:
+      typeof body.is_published === "boolean" ? body.is_published : true,
     cover_image_url: body.cover_image_url ?? null,
     register_url: body.register_url ?? null,
+
+    // ✅ NEW
+    event_type: body.event_type ?? "Workshop",
   };
 }
 
@@ -34,10 +38,14 @@ function pickUpdateFields(body: any) {
   if ("description" in body) patch.description = body.description ?? "";
   if ("tags" in body) patch.tags = Array.isArray(body.tags) ? body.tags : [];
   if ("is_published" in body)
-    patch.is_published = typeof body.is_published === "boolean" ? body.is_published : true;
+    patch.is_published =
+      typeof body.is_published === "boolean" ? body.is_published : true;
 
   if ("cover_image_url" in body) patch.cover_image_url = body.cover_image_url ?? null;
   if ("register_url" in body) patch.register_url = body.register_url ?? null;
+
+  // ✅ NEW (only if the client sends it)
+  if ("event_type" in body) patch.event_type = body.event_type ?? "Workshop";
 
   return patch;
 }

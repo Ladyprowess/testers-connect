@@ -7,6 +7,14 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { ArrowRight, X } from "lucide-react";
 
+type EventType =
+  | "Webinar"
+  | "Workshop"
+  | "Bootcamp"
+  | "Masterclass"
+  | "Meetup"
+  | "QA Session";
+
 type EventItem = {
   id?: string;
   title: string;
@@ -18,6 +26,9 @@ type EventItem = {
   tags?: string[];
   cover_image_url?: string | null;
   register_url?: string | null;
+
+  // ✅ NEW
+  event_type?: EventType;
 };
 
 function snippet(text: string, max = 120) {
@@ -61,6 +72,10 @@ function isPastEvent(eventDate: string) {
   return Boolean(eventDate) && eventDate < today;
 }
 
+function prettyEventType(t?: EventType) {
+  return t || "Workshop";
+}
+
 export default function EventCardsModal({ events, limit }: EventCardsModalProps) {
   const [open, setOpen] = useState(false);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
@@ -93,6 +108,7 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((e) => {
           const imgSrc = e.cover_image_url || FALLBACK_IMG;
+          const typeLabel = prettyEventType(e.event_type);
 
           return (
             <button
@@ -110,6 +126,11 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
+
+                  {/* ✅ NEW: type badge */}
+                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-900">
+                    {typeLabel}
+                  </div>
                 </div>
 
                 <div className="p-6">
@@ -120,6 +141,9 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                   <div className="mt-3 space-y-1 text-sm text-slate-700">
                     <div>📅 {e.event_date}</div>
                     <div>📍 {e.city || e.mode}</div>
+
+                    {/* ✅ NEW: show type */}
+                    <div>🎯 {typeLabel}</div>
                   </div>
 
                   <p className="mt-3 text-sm leading-6 text-slate-600">
@@ -156,6 +180,12 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                 fill
                 className="object-cover"
               />
+
+              {/* ✅ NEW: type badge */}
+              <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-900">
+                {prettyEventType(active.event_type)}
+              </div>
+
               <button
                 onClick={closeModal}
                 className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-900 hover:bg-white"
@@ -174,7 +204,11 @@ export default function EventCardsModal({ events, limit }: EventCardsModalProps)
                 <div>📅 {active.event_date}</div>
                 <div>📍 {active.city || active.mode}</div>
                 <div>🧑‍🤝‍🧑 {active.mode}</div>
-                <div>🕒 Time TBA</div>
+
+                {/* ✅ NEW */}
+                <div>🎯 {prettyEventType(active.event_type)}</div>
+
+                <div className="sm:col-span-2">🕒 Time TBA</div>
               </div>
 
               {active.tags?.length ? (

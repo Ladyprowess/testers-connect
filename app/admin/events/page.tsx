@@ -3,6 +3,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
+type EventType =
+  | "Webinar"
+  | "Workshop"
+  | "Bootcamp"
+  | "Masterclass"
+  | "Meetup"
+  | "QA Session";
+
 type DbEventLite = {
   title: string;
   slug: string;
@@ -16,6 +24,9 @@ type DbEventLite = {
 
   // ✅ NEW
   register_url: string | null;
+
+  // ✅ NEW
+  event_type: EventType;
 };
 
 type FormState = {
@@ -31,6 +42,9 @@ type FormState = {
 
   // ✅ NEW (string for input)
   register_url: string;
+
+  // ✅ NEW
+  event_type: EventType;
 };
 
 const empty: FormState = {
@@ -43,7 +57,10 @@ const empty: FormState = {
   tags: "",
   is_published: true,
   cover_image_url: null,
-  register_url: "", // ✅
+  register_url: "",
+
+  // ✅ NEW
+  event_type: "Workshop",
 };
 
 function slugify(input: string) {
@@ -112,6 +129,9 @@ export default function AdminEventsPage() {
 
       // ✅ NEW
       register_url: e.register_url || "",
+
+      // ✅ NEW
+      event_type: e.event_type || "Workshop",
     });
     setMsg("");
   }
@@ -175,6 +195,9 @@ export default function AdminEventsPage() {
 
       // ✅ NEW (send null if empty)
       register_url: form.register_url?.trim() ? form.register_url.trim() : null,
+
+      // ✅ NEW
+      event_type: form.event_type || "Workshop",
     };
 
     const method = isEditing ? "PUT" : "POST";
@@ -338,6 +361,20 @@ export default function AdminEventsPage() {
                 </select>
               </div>
 
+              {/* ✅ NEW: event type */}
+              <select
+                value={form.event_type}
+                onChange={(e) => setForm({ ...form, event_type: e.target.value as EventType })}
+                className="rounded-2xl border border-slate-200 px-4 py-3 text-sm"
+              >
+                <option value="Webinar">Webinar</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Bootcamp">Bootcamp</option>
+                <option value="Masterclass">Masterclass</option>
+                <option value="Meetup">Meetup</option>
+                <option value="QA Session">QA Session</option>
+              </select>
+
               <input
                 value={form.city}
                 onChange={(e) => setForm({ ...form, city: e.target.value })}
@@ -353,7 +390,7 @@ export default function AdminEventsPage() {
                 className="rounded-2xl border border-slate-200 px-4 py-3 text-sm"
               />
 
-              {/* ✅ NEW: register/view link */}
+              {/* ✅ register/view link */}
               <input
                 value={form.register_url}
                 onChange={(e) => setForm({ ...form, register_url: e.target.value })}
