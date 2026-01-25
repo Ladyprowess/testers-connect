@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
 
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb", // increase if you want (e.g. "10mb")
+    },
+  },
+
   images: {
     remotePatterns: [
       {
