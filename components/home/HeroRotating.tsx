@@ -159,10 +159,10 @@ export default function HeroRotating() {
                 </div>
                 <div className="min-w-0">
                   <div className="text-sm font-semibold text-slate-900">
-                    Active Members
+                    Members
                   </div>
                   <div className="mt-1 text-sm text-slate-600">
-                    Growing weekly
+                    Growing
                   </div>
                 </div>
               </div>
