@@ -177,7 +177,7 @@ export default function AboutPage() {
                     </p>
                     <div className="mt-4">
                       <div className="font-semibold text-slate-900">
-                        A community member
+                        Founder
                       </div>
                       <div className="text-sm text-slate-500">
                         Testers Connect
@@ -317,76 +317,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* TRUST SECTION (add icons) + light blue background */}
-      <section className="bg-sky-50/60 py-16">
-        <Container>
-          <h2 className="text-center text-3xl font-semibold text-slate-900">
-            Why People Trust Us
-          </h2>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-4">
-            <Card className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-white p-2 shadow-sm">
-                  <Award className="h-5 w-5 text-slate-700" />
-                </div>
-                <div>
-                  <div className="text-base font-bold">Practical support</div>
-                  <p className="mt-2 text-slate-600">
-                    We focus on what helps you grow: learning, practice, and
-                    guidance.
-                  </p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-white p-2 shadow-sm">
-                  <BadgeCheck className="h-5 w-5 text-slate-700" />
-                </div>
-                <div>
-                  <div className="text-base font-bold">Mentorship-led</div>
-                  <p className="mt-2 text-slate-600">
-                    You learn from people who have real QA experience and
-                    understand the journey.
-                  </p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-white p-2 shadow-sm">
-                  <Globe className="h-5 w-5 text-slate-700" />
-                </div>
-                <div>
-                  <div className="text-base font-bold">Global community</div>
-                  <p className="mt-2 text-slate-600">
-                    We welcome testers from different backgrounds and learning
-                    levels.
-                  </p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-white p-2 shadow-sm">
-                  <ShieldCheck className="h-5 w-5 text-slate-700" />
-                </div>
-                <div>
-                  <div className="text-base font-bold">Honest guidance</div>
-                  <p className="mt-2 text-slate-600">
-                    We tell you what works, what to focus on, and what to stop
-                    doing.
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </Container>
-      </section>
+      
     </div>
   );
 }
