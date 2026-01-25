@@ -38,6 +38,8 @@ export default function ResourcesExplorer({
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 
   const [query, setQuery] = useState("");
+
+  // Desktop-only filter state (mobile/tablet will ignore these)
   const [category, setCategory] = useState("All");
   const [stage, setStage] = useState("All");
   const [type, setType] = useState("All");
@@ -60,6 +62,17 @@ export default function ResourcesExplorer({
     return ["All", ...Array.from(set).sort()];
   }, [initialResources]);
 
+  // Detect mobile/tablet (no filters, only search)
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)"); // < lg
+    const update = () => setIsMobileOrTablet(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
 
@@ -70,13 +83,17 @@ export default function ResourcesExplorer({
         r.description.toLowerCase().includes(q) ||
         (r.tags || []).some((t) => t.toLowerCase().includes(q));
 
+      // ✅ On mobile/tablet: ignore filters completely
+      if (isMobileOrTablet) return matchesQuery;
+
+      // ✅ On desktop: apply filters + search
       const matchesCategory = category === "All" || r.category === category;
       const matchesStage = stage === "All" || r.stage === stage;
       const matchesType = type === "All" || r.type === type;
 
       return matchesQuery && matchesCategory && matchesStage && matchesType;
     });
-  }, [initialResources, query, category, stage, type]);
+  }, [initialResources, query, category, stage, type, isMobileOrTablet]);
 
   const clearFilters = () => {
     setQuery("");
@@ -185,8 +202,8 @@ export default function ResourcesExplorer({
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
-        {/* Filters */}
-        <Card className="h-fit p-6">
+        {/* Filters (Desktop only) */}
+        <Card className="hidden h-fit p-6 lg:block">
           <div className="text-base font-bold">Filters</div>
 
           <div className="mt-5">
@@ -458,9 +475,7 @@ export default function ResourcesExplorer({
 
                     <select
                       value={reviewRating}
-                      onChange={(e) =>
-                        setReviewRating(Number(e.target.value))
-                      }
+                      onChange={(e) => setReviewRating(Number(e.target.value))}
                       className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm"
                     >
                       <option value={5}>5 - Excellent</option>
@@ -482,9 +497,7 @@ export default function ResourcesExplorer({
                     type="button"
                     onClick={submitReview}
                     disabled={
-                      submitting ||
-                      !reviewName.trim() ||
-                      !reviewComment.trim()
+                      submitting || !reviewName.trim() || !reviewComment.trim()
                     }
                     className="mt-3 inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold hover:bg-slate-50 disabled:opacity-60"
                   >
