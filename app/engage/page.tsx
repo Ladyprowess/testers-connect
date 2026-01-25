@@ -25,8 +25,8 @@ export default function EngagePage() {
             desc: "Help with event support, moderation, and simple community tasks.",
           },
           {
-            id: "lead",
-            title: "Lead a chapter",
+            id: "apply",
+            title: "Become a Mentor",
             desc: "Start meetups in your city and grow a strong local community.",
           },
         ].map((x) => (
