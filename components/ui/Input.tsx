@@ -3,10 +3,21 @@ import React from "react";
 export default function Input(
   props: React.InputHTMLAttributes<HTMLInputElement>
 ) {
+  const { className = "", ...rest } = props;
+
   return (
     <input
-      {...props}
-      className={`w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-200 ${props.className ?? ""}`}
+      {...rest}
+      className={`
+        w-full rounded-xl
+        border border-border
+        bg-background text-foreground
+        px-4 py-3 text-sm
+        outline-none
+        placeholder:text-muted
+        focus:ring-2 focus:ring-brand
+        ${className}
+      `}
     />
   );
 }

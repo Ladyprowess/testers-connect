@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,15 +11,15 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "var(--brand)",
-          light: "var(--brand-light)",
-          soft: "var(--brand-soft)",
-          dark: "var(--brand-dark)",
+          DEFAULT: "rgb(var(--brand) / <alpha-value>)",
+          light: "rgb(var(--brand-light) / <alpha-value>)",
+          soft: "rgb(var(--brand-soft) / <alpha-value>)",
+          dark: "rgb(var(--brand-dark) / <alpha-value>)",
         },
-        border: "var(--border)",
-        muted: "var(--muted)",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
       },
     },
   },

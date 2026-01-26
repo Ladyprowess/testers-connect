@@ -4,6 +4,14 @@
    BRAND THEME — TESTERS CONNECT
    =============================== */
 
+/*
+  Behaviour:
+  - Default (no manual choice): follows device theme via prefers-color-scheme
+  - Manual choice:
+      html.dark  -> force dark
+      html.light -> force light
+*/
+
 :root {
   /* Base */
   --background: #ffffff;
@@ -20,8 +28,9 @@
   --muted: #64748b;
 }
 
+/* ✅ System dark mode ONLY when user has not forced light/dark */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light):not(.dark) {
     --background: #020617;
     --foreground: #e5e7eb;
 
@@ -35,6 +44,35 @@
   }
 }
 
+/* ✅ Manual override: FORCE dark */
+:root.dark {
+  --background: #020617;
+  --foreground: #e5e7eb;
+
+  --brand: #60a5fa;
+  --brand-light: #93c5fd;
+  --brand-soft: #020617;
+  --brand-dark: #2563eb;
+
+  --border: #1e293b;
+  --muted: #94a3b8;
+}
+
+/* ✅ Manual override: FORCE light (optional but recommended) */
+:root.light {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --brand: #2563eb;
+  --brand-light: #60a5fa;
+  --brand-soft: #eff6ff;
+  --brand-dark: #1e40af;
+
+  --border: #e5e7eb;
+  --muted: #64748b;
+}
+
+/* Base page styling */
 body {
   background: var(--background);
   color: var(--foreground);

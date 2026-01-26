@@ -66,10 +66,10 @@ export default async function HomePage() {
       bg: "bg-[#16A34A]",
     },
     {
-      title: "Webinars",
+      title: "Resources",
       desc: "Simple learning paths that build skill step by step.",
-      href: "/webinars",
-      metric: "20+ Webinars",
+      href: "/reesources",
+      metric: "20+ Resources",
       Icon: GraduationCap,
       bg: "bg-[#F97316]",
     },
