@@ -13,63 +13,57 @@
 */
 
 :root {
-  /* Base */
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: 255 255 255;
+  --foreground: 15 23 42;
 
-  /* Brand (Blue) */
-  --brand: #2563eb;        /* primary blue */
-  --brand-light: #60a5fa;  /* hover / accents */
-  --brand-soft: #eff6ff;   /* section backgrounds */
-  --brand-dark: #1e40af;   /* strong CTA / focus */
+  --brand: 37 99 235;
+  --brand-light: 96 165 250;
+  --brand-soft: 239 246 255;
+  --brand-dark: 30 64 175;
 
-  /* Borders & muted */
-  --border: #e5e7eb;
-  --muted: #64748b;
+  --border: 229 231 235;
+  --muted: 100 116 139;
 }
 
-/* ✅ System dark mode ONLY when user has not forced light/dark */
 @media (prefers-color-scheme: dark) {
   :root:not(.light):not(.dark) {
-    --background: #020617;
-    --foreground: #e5e7eb;
+    --background: 2 6 23;
+    --foreground: 229 231 235;
 
-    --brand: #60a5fa;
-    --brand-light: #93c5fd;
-    --brand-soft: #020617;
-    --brand-dark: #2563eb;
+    --brand: 96 165 250;
+    --brand-light: 147 197 253;
+    --brand-soft: 2 6 23;
+    --brand-dark: 37 99 235;
 
-    --border: #1e293b;
-    --muted: #94a3b8;
+    --border: 30 41 59;
+    --muted: 148 163 184;
   }
 }
 
-/* ✅ Manual override: FORCE dark */
 :root.dark {
-  --background: #020617;
-  --foreground: #e5e7eb;
+  --background: 2 6 23;
+  --foreground: 229 231 235;
 
-  --brand: #60a5fa;
-  --brand-light: #93c5fd;
-  --brand-soft: #020617;
-  --brand-dark: #2563eb;
+  --brand: 96 165 250;
+  --brand-light: 147 197 253;
+  --brand-soft: 2 6 23;
+  --brand-dark: 37 99 235;
 
-  --border: #1e293b;
-  --muted: #94a3b8;
+  --border: 30 41 59;
+  --muted: 148 163 184;
 }
 
-/* ✅ Manual override: FORCE light (optional but recommended) */
 :root.light {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: 255 255 255;
+  --foreground: 15 23 42;
 
-  --brand: #2563eb;
-  --brand-light: #60a5fa;
-  --brand-soft: #eff6ff;
-  --brand-dark: #1e40af;
+  --brand: 37 99 235;
+  --brand-light: 96 165 250;
+  --brand-soft: 239 246 255;
+  --brand-dark: 30 64 175;
 
-  --border: #e5e7eb;
-  --muted: #64748b;
+  --border: 229 231 235;
+  --muted: 100 116 139;
 }
 
 /* Base page styling */
