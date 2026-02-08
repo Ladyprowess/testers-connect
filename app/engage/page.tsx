@@ -2,6 +2,7 @@ import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 import {
   Mic2,
   HandHeart,
@@ -18,7 +19,7 @@ export default function EngagePage() {
       <SectionHeading
         eyebrow="Engage"
         title="Get involved"
-        desc="Speak, volunteer, lead a chapter, or help new testers."
+        desc="Speak, contribute, mentor, or learn from experienced testers."
       />
 
       {/* Cards */}
@@ -30,13 +31,15 @@ export default function EngagePage() {
             desc: "Share your story, lessons, and practical tips with the community.",
             icon: Mic2,
             cta: "Apply to speak",
+            href: "#", // you’ll add later
           },
           {
-            id: "volunteer",
-            title: "Volunteer",
-            desc: "Support events, help with moderation, and take on simple community tasks.",
+            id: "ink",
+            title: "Testers’ Ink",
+            desc: "Write, and contribute articles to the Testers Connect community.",
             icon: HandHeart,
-            cta: "Volunteer",
+            cta: "Join Testers' Ink",
+            href: "#", // you’ll add later
           },
           {
             id: "mentor",
@@ -44,6 +47,7 @@ export default function EngagePage() {
             desc: "Guide new testers with direction, feedback, and real-world support.",
             icon: GraduationCap,
             cta: "Apply as a mentor",
+            href: "https://forms.gle/iy148XeihJPuATJL6",
           },
         ].map((x) => {
           const Icon = x.icon;
@@ -74,14 +78,16 @@ export default function EngagePage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-between">
-                <Button
-                  variant="secondary"
-                  className="inline-flex items-center gap-2"
-                >
-                  {x.cta}
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+              <div className="mt-6">
+                <Link href={x.href} target="_blank">
+                  <Button
+                    variant="secondary"
+                    className="inline-flex items-center gap-2"
+                  >
+                    {x.cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </Card>
           );
@@ -103,12 +109,12 @@ export default function EngagePage() {
             },
             {
               title: "Build your credibility",
-              desc: "Speaking, mentoring, or volunteering helps you stand out professionally.",
+              desc: "Speaking, mentoring, or writing helps you stand out professionally.",
               icon: Briefcase,
             },
             {
-              title: "Make real impact",
-              desc: "Help someone learn faster, avoid mistakes, and get better opportunities.",
+              title: "Learn faster",
+              desc: "Access shared knowledge, feedback, and real testing experiences.",
               icon: Globe2,
             },
           ].map((y) => {
@@ -144,14 +150,19 @@ export default function EngagePage() {
               Not sure where to start?
             </div>
             <p className="mt-2 text-[15px] leading-7 text-slate-600">
-              Start with volunteering. It’s the easiest way to meet people, learn how we run things,
-              and find your best fit.
+              Not ready to mentor yet? You can join as a mentee and learn directly
+              from experienced testers.
             </p>
           </div>
 
-          <Button className="bg-[#145DA0] text-white hover:bg-[#0f4f8a]">
-            Contact us!
-          </Button>
+          <Link
+            href="https://forms.gle/NYx5n1wzEj2VVQWB7"
+            target="_blank"
+          >
+            <Button className="bg-[#145DA0] text-white hover:bg-[#0f4f8a]">
+              Become a mentee
+            </Button>
+          </Link>
         </div>
       </Card>
     </Container>
