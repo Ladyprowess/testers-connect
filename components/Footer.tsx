@@ -6,7 +6,7 @@ import Image from "next/image";
 import Container from "@/components/Container";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { MessageCircle, Users, Code2, Play, Globe } from "lucide-react";
+import { Globe, Instagram, Linkedin, Slack, Mail, AtSign } from "lucide-react";
 
 type FooterColumn = {
   title: string;
@@ -117,38 +117,57 @@ export default function Footer() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-6 text-slate-700">
-                  <Link
-                    href="/community"
-                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-                    aria-label="Community"
-                  >
-                    <Users className="h-6 w-6" />
-                  </Link>
+ {/* Email 1 */}
+<a
+  href="mailto:testerconnect@yahoo.com"
+  className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+  aria-label="Email testerconnect@yahoo.com"
+>
+  <Mail className="h-6 w-6" />
+</a>
 
-                  <Link
-                    href="/chapters"
-                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-                    aria-label="Chapters"
-                  >
-                    <MessageCircle className="h-6 w-6" />
-                  </Link>
+{/* Email 2 */}
+<a
+  href="mailto:connecttesters@gmail.com"
+  className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+  aria-label="Email connecttesters@gmail.com"
+>
+  <AtSign className="h-6 w-6" />
+</a>
 
-                  <Link
-                    href="/docs"
-                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-                    aria-label="Documentation"
-                  >
-                    <Code2 className="h-6 w-6" />
-                  </Link>
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/testers_connect?igsh=YTJjYW1tOWZuYTZw"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+    aria-label="Instagram"
+  >
+    <Instagram className="h-6 w-6" />
+  </a>
 
-                  <Link
-                    href="/resources"
-                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-                    aria-label="Resources"
-                  >
-                    <Play className="h-6 w-6" />
-                  </Link>
-                </div>
+  {/* Slack */}
+  <a
+    href="https://join.slack.com/t/testers-connect/shared_invite/zt-3er2nbb1u-q6vWJbZYZ8OQHytBKEswaw"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+    aria-label="Slack"
+  >
+    <Slack className="h-6 w-6" />
+  </a>
+
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/company/testerskonnect"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+    aria-label="LinkedIn"
+  >
+    <Linkedin className="h-6 w-6" />
+  </a>
+</div>
               </div>
             </div>
           </div>
@@ -212,7 +231,7 @@ export default function Footer() {
                 type="button"
                 onClick={handleSubscribe}
                 disabled={loading}
-                className="w-full sm:w-auto bg-blue-700 text-white hover:bg-blue-800 disabled:opacity-60"
+             className="w-full sm:w-auto bg-[#145da0] text-white hover:bg-[#0f4f8a] disabled:opacity-60"
               >
                 {loading ? "Subscribing..." : "Subscribe"}
               </Button>
