@@ -39,7 +39,7 @@ export default function EngagePage() {
             desc: "Write, and contribute articles to the Testers Connect community.",
             icon: HandHeart,
             cta: "Join Testers' Ink",
-            href: "#", // you’ll add later
+            href: "https://docs.google.com/forms/d/e/1FAIpQLSeQX2MfA2NTaWioMfDa86i4pLiEPBCL77A7MKNYZ8uA9ikP2Q/viewform?usp=sharing&ouid=107587598389532495794",
           },
           {
             id: "mentor",
