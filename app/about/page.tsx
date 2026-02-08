@@ -191,7 +191,7 @@ export default function AboutPage() {
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
                 <img
-                  src="/images/testers-connect-about.jpg"
+                  src="/images/esther.jpg"
                   alt="Testers Connect community and learning"
                   className="h-[420px] w-full object-cover"
                 />
