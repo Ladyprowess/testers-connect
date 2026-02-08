@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Container from "@/components/Container";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { Globe, Instagram, Linkedin, Slack, Mail, AtSign } from "lucide-react";
+import { Instagram, Linkedin, Slack, Mail, AtSign } from "lucide-react";
 
 type FooterColumn = {
   title: string;
@@ -15,39 +14,21 @@ type FooterColumn = {
 
 const footerColumns: FooterColumn[] = [
   {
-    title: "PLATFORM",
+    title: "PAGES",
     links: [
       { label: "Home", href: "/" },
-      { label: "Events Hub", href: "/events" },
-      { label: "Community Portal", href: "/community" },
-      { label: "Webinars Catalog", href: "/webinars" },
+      { label: "About", href: "/about" },
+      { label: "Events", href: "/events" },
+      { label: "Community", href: "/community" },
     ],
   },
   {
-    title: "RESOURCES",
+    title: "EXPLORE",
     links: [
-      { label: "Chapter Directory", href: "/chapters" },
-      { label: "Resource Library", href: "/resources" },
-      { label: "Documentation", href: "/docs" },
-      { label: "Support", href: "/support" },
-    ],
-  },
-  {
-    title: "COMMUNITY",
-    links: [
-      { label: "About Us", href: "/about" },
-      { label: "Success Stories", href: "/success-stories" },
-      { label: "Global Chapters", href: "/chapters" },
-      { label: "Become a Mentor", href: "/mentor" },
-    ],
-  },
-  {
-    title: "LEGAL",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Cookie Policy", href: "/cookies" },
-      { label: "Code of Conduct", href: "/code-of-conduct" },
+      { label: "Blog", href: "/blog" },
+      { label: "Resources", href: "/resources" },
+      { label: "Engage", href: "/engage" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
@@ -95,7 +76,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-slate-200 bg-slate-50">
       {/* Soft background overlay (same style as hero) */}
       <div className="pointer-events-none absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F9FF] via-white to-[#F5F9FF]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F5F9FF] via-white to-[#F5F9FF]" />
         <div className="absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-[#145DA0]/8 blur-3xl" />
         <div className="absolute -left-40 bottom-0 h-[520px] w-[520px] rounded-full bg-[#EAF2FB] blur-3xl" />
       </div>
@@ -117,64 +98,64 @@ export default function Footer() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-6 text-slate-700">
- {/* Email 1 */}
-<a
-  href="mailto:testerconnect@yahoo.com"
-  className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-  aria-label="Email testerconnect@yahoo.com"
->
-  <Mail className="h-6 w-6" />
-</a>
+                  {/* Email 1 */}
+                  <a
+                    href="mailto:testerconnect@yahoo.com"
+                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+                    aria-label="Email testerconnect@yahoo.com"
+                  >
+                    <Mail className="h-6 w-6" />
+                  </a>
 
-{/* Email 2 */}
-<a
-  href="mailto:connecttesters@gmail.com"
-  className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-  aria-label="Email connecttesters@gmail.com"
->
-  <AtSign className="h-6 w-6" />
-</a>
+                  {/* Email 2 */}
+                  <a
+                    href="mailto:connecttesters@gmail.com"
+                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+                    aria-label="Email connecttesters@gmail.com"
+                  >
+                    <AtSign className="h-6 w-6" />
+                  </a>
 
-  {/* Instagram */}
-  <a
-    href="https://www.instagram.com/testers_connect?igsh=YTJjYW1tOWZuYTZw"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-    aria-label="Instagram"
-  >
-    <Instagram className="h-6 w-6" />
-  </a>
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/testers_connect?igsh=YTJjYW1tOWZuYTZw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="h-6 w-6" />
+                  </a>
 
-  {/* Slack */}
-  <a
-    href="https://join.slack.com/t/testers-connect/shared_invite/zt-3er2nbb1u-q6vWJbZYZ8OQHytBKEswaw"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-    aria-label="Slack"
-  >
-    <Slack className="h-6 w-6" />
-  </a>
+                  {/* Slack */}
+                  <a
+                    href="https://join.slack.com/t/testers-connect/shared_invite/zt-3er2nbb1u-q6vWJbZYZ8OQHytBKEswaw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+                    aria-label="Slack"
+                  >
+                    <Slack className="h-6 w-6" />
+                  </a>
 
-  {/* LinkedIn */}
-  <a
-    href="https://www.linkedin.com/company/testerskonnect"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
-    aria-label="LinkedIn"
-  >
-    <Linkedin className="h-6 w-6" />
-  </a>
-</div>
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/company/testerskonnect"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl p-2 hover:bg-blue-50 hover:text-blue-700"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-6 w-6" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Columns */}
           <div className="lg:col-span-8">
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2">
               {footerColumns.map((col) => (
                 <div key={col.title}>
                   <div className="text-xs font-extrabold tracking-widest text-slate-900">
@@ -231,7 +212,7 @@ export default function Footer() {
                 type="button"
                 onClick={handleSubscribe}
                 disabled={loading}
-             className="w-full sm:w-auto bg-[#145da0] text-white hover:bg-[#0f4f8a] disabled:opacity-60"
+                className="w-full sm:w-auto bg-[#145da0] text-white hover:bg-[#0f4f8a] disabled:opacity-60"
               >
                 {loading ? "Subscribing..." : "Subscribe"}
               </Button>
@@ -255,29 +236,17 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <Container className="relative py-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-3 text-[15px] text-slate-700">
-            <span>© {year} Testers Connect. All rights reserved.</span>
-            <span className="hidden sm:inline">•</span>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-[15px] text-slate-700">
+            © {year} Testers Connect. All rights reserved.
+          </span>
 
-            <Link
-              href="/global"
-              className="inline-flex items-center gap-2 hover:text-blue-700"
-            >
-              <Globe className="h-4 w-4" />
-              <span>Global Community</span>
-            </Link>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 text-[15px] text-slate-700">
-            <Link href="/accessibility" className="hover:text-blue-700">
-              Accessibility
-            </Link>
-            <span>•</span>
-            <Link href="/sitemap" className="hover:text-blue-700">
-              Sitemap
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="text-[15px] text-slate-700 hover:text-blue-700"
+          >
+            Contact
+          </Link>
         </div>
       </Container>
     </footer>
