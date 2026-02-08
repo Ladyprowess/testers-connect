@@ -65,7 +65,7 @@ export default function AboutPage() {
                 <div>
                   <div className="text-lg font-bold">Practice that matters</div>
                   <p className="mt-2 text-slate-600">
-                    We encourage real practice — not just watching videos — so
+                    We encourage real practice; not just watching videos — so
                     you can improve faster.
                   </p>
                 </div>
@@ -191,7 +191,7 @@ export default function AboutPage() {
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
                 <img
-                  src="/images/esther.jpg"
+                  src="/assets/esther.jpg"
                   alt="Testers Connect community and learning"
                   className="h-[420px] w-full object-cover"
                 />
