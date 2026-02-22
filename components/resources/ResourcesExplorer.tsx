@@ -393,20 +393,35 @@ export default function ResourcesExplorer({
                 </div>
 
                 {active.file_path ? (
-                  <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
-                    <iframe
-                      title={`${active.title} PDF`}
-                      src={getPdfUrl(active.file_path) as string}
-                      className="h-[70vh] w-full"
-                    />
-                  </div>
-                ) : (
-                  <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
-                    <div className="text-sm text-slate-600">
-                      No PDF uploaded for this resource yet.
-                    </div>
-                  </div>
-                )}
+  isMobileOrTablet ? (
+    <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+      <div className="text-sm text-slate-700">
+        PDF preview is best opened in your browser on mobile.
+      </div>
+
+      <a
+        href={`${getPdfUrl(active.file_path)}#view=FitH`}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-3 inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold hover:bg-white"
+      >
+        View PDF
+      </a>
+    </div>
+  ) : (
+    <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
+      <iframe
+        title={`${active.title} PDF`}
+        src={`${getPdfUrl(active.file_path)}#view=FitH`}
+        className="h-[70vh] w-full"
+      />
+    </div>
+  )
+) : (
+  <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+    <div className="text-sm text-slate-600">No PDF uploaded for this resource yet.</div>
+  </div>
+)}
               </div>
 
               {/* Tags */}
