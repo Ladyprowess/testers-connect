@@ -3,6 +3,9 @@ import SectionHeading from "@/components/SectionHeading";
 import ResourcesExplorer from "@/components/resources/ResourcesExplorer";
 import { getResources } from "@/lib/db/resources";
 
+export const dynamic = "force-dynamic"; 
+export const revalidate = 0;
+
 export default async function ResourcesPage() {
   const resources = await getResources();
 
